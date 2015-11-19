@@ -14,7 +14,7 @@
         <!--<ObjectDataProvider x:Key="theBook" ObjectType="{x:Type models:BooksRepository}" MethodName="GetTheBook" />-->
         <utils:StringArrayToStringConverter x:Key="StringArrayToStringConverter" />
 
-        <DataTemplate DataType="{x:Type models:Book}">
+        <DataTemplate DataType="{x:Type models:Book}" x:Key="wroxBookTemplate">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition SharedSizeGroup="bookSizeGroup" />
@@ -28,6 +28,23 @@
                 </Border>
             </Grid>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type models:Book}" x:Key="defaultBookTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition SharedSizeGroup="bookSizeGroup" />
+                </Grid.ColumnDefinitions>
+
+                <Border BorderBrush="Blue" BorderThickness="4" Background="LightBlue" Margin="8">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Title, Mode=OneWay}" />
+                        <TextBlock Text="{Binding Publisher, Mode=OneWay}" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </DataTemplate>
+        
+        <utils:BookTemplateSelector WroxBookTemplate="{StaticResource wroxBookTemplate}" DefaultBookTemplate="{StaticResource defaultBookTemplate}" x:Key="BookTemplateSelector" />
     </Window.Resources>
     <!--<Grid DataContext="{Binding Source={StaticResource theBook}}">-->
     <Grid>
@@ -35,7 +52,10 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <ListBox Grid.IsSharedSizeScope="True"  ItemsSource="{Binding}" Grid.Column="0" IsSynchronizedWithCurrentItem="True" />
+        <ListBox Grid.IsSharedSizeScope="True"  
+                 ItemsSource="{Binding}" Grid.Column="0" 
+                 IsSynchronizedWithCurrentItem="True" 
+                 ItemTemplateSelector="{StaticResource BookTemplateSelector}" />
         <GridSplitter Grid.Column="0"  HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="3" />
         <StackPanel x:Name="stack1" Orientation="Vertical" Grid.Column="1">
             <Button Content="{Binding /}" />
