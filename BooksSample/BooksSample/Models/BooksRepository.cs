@@ -20,24 +20,10 @@ namespace BooksSample.Models
         public IEnumerable<Book> GetBooks() =>
             new List<Book>()
             {
-                new Book
-                {
-                    Isbn = "34784",
-                    Title = "Professional C# 5.0",
-                    Publisher = "Wrox Press"
-                },
-                new Book
-                {
-                    Isbn = "37258345",
-                    Title = "Enterprise Services",
-                    Publisher = "AWL"
-                },
-                new Book
-                {
-                    Isbn = "5445466",
-                    Title = "Professional C# 6 and .NET Core 5",
-                    Publisher = "Wrox Press"
-                }
+                new Book("34784", "Professional C# 5.0", "Wrox Press", "Christian Nagel", "Morgan Skinner", "Jay Glynn"),
+                new Book("37258345", "Enterprise Services", "AWL", "Christian Nagel"),
+                new Book("5445466", "Professional C# 6 and .NET Core 5", "Wrox Press", "Christian Nagel")
+
             };
     }
 }

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BooksSample"
+        xmlns:utils="clr-namespace:BooksSample.Utilities"
 		xmlns:models="clr-namespace:BooksSample.Models"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
@@ -11,6 +12,7 @@
 		<!--<models:Book x:Key="theBook" Title="Professional C# 6" Publisher="Wrox PRess" />-->
 		
 		<!--<ObjectDataProvider x:Key="theBook" ObjectType="{x:Type models:BooksRepository}" MethodName="GetTheBook" />-->
+        <utils:StringArrayToStringConverter x:Key="StringArrayToStringConverter" />
 	</Window.Resources>
 	<!--<Grid DataContext="{Binding Source={StaticResource theBook}}">-->
 	<Grid>
@@ -20,11 +22,13 @@
 		</Grid.ColumnDefinitions>
 		<ListBox ItemsSource="{Binding}" Grid.Column="0" IsSynchronizedWithCurrentItem="True" />
 		<GridSplitter Grid.Column="0"  HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="3" />
-		<StackPanel Orientation="Vertical" Grid.Column="1">
+		<StackPanel x:Name="stack1" Orientation="Vertical" Grid.Column="1">
 			<Button Content="{Binding /}" />
 			<TextBlock Text="{Binding /Isbn, Mode=OneTime}" />
 			<TextBox Text="{Binding /Title, Mode=TwoWay}" />
 			<TextBox Text="{Binding /Publisher, Mode=TwoWay}" />
+            <TextBlock Text="{Binding /Authors, Mode=OneTime, Converter={StaticResource StringArrayToStringConverter}, ConverterParameter=', '}" />
+            <!--<ListBox ItemsSource="{Binding /Authors, Mode=OneTime}" />-->
 			<Button Content="Show Book" Click="OnShowBook" />
 			<Button Content="Change Book" Click="OnChangeBook" />
 			<Button Content="Add A Book" Click="OnAddBook" />
