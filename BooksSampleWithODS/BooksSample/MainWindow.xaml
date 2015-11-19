@@ -70,10 +70,6 @@
             <TextBox Text="{Binding /Title, Mode=TwoWay}" />
             <TextBox Text="{Binding /Publisher, Mode=TwoWay}" />
             <TextBlock Text="{Binding /Authors, Mode=OneTime, Converter={StaticResource StringArrayToStringConverter}, ConverterParameter=', '}" />
-            <!--<ListBox ItemsSource="{Binding /Authors, Mode=OneTime}" />-->
-            <Button Content="Show Book" Click="OnShowBook" />
-            <Button Content="Change Book" Click="OnChangeBook" />
-            <Button Content="Add A Book" Click="OnAddBook" />
         </StackPanel>
 
     </Grid>
