@@ -46,8 +46,6 @@ namespace BooksSample.Models
             get { return _authors; }
         }
 
-
-
         public override string ToString() => Title;
 
     }

@@ -8,31 +8,46 @@
 		xmlns:models="clr-namespace:BooksSample.Models"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-	<Window.Resources>
-		<!--<models:Book x:Key="theBook" Title="Professional C# 6" Publisher="Wrox PRess" />-->
-		
-		<!--<ObjectDataProvider x:Key="theBook" ObjectType="{x:Type models:BooksRepository}" MethodName="GetTheBook" />-->
+    <Window.Resources>
+        <!--<models:Book x:Key="theBook" Title="Professional C# 6" Publisher="Wrox PRess" />-->
+
+        <!--<ObjectDataProvider x:Key="theBook" ObjectType="{x:Type models:BooksRepository}" MethodName="GetTheBook" />-->
         <utils:StringArrayToStringConverter x:Key="StringArrayToStringConverter" />
-	</Window.Resources>
-	<!--<Grid DataContext="{Binding Source={StaticResource theBook}}">-->
-	<Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition />
-			<ColumnDefinition />
-		</Grid.ColumnDefinitions>
-		<ListBox ItemsSource="{Binding}" Grid.Column="0" IsSynchronizedWithCurrentItem="True" />
-		<GridSplitter Grid.Column="0"  HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="3" />
-		<StackPanel x:Name="stack1" Orientation="Vertical" Grid.Column="1">
-			<Button Content="{Binding /}" />
-			<TextBlock Text="{Binding /Isbn, Mode=OneTime}" />
-			<TextBox Text="{Binding /Title, Mode=TwoWay}" />
-			<TextBox Text="{Binding /Publisher, Mode=TwoWay}" />
+
+        <DataTemplate DataType="{x:Type models:Book}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition SharedSizeGroup="bookSizeGroup" />
+                </Grid.ColumnDefinitions>
+
+                <Border BorderBrush="Blue" BorderThickness="4" Background="Red" Margin="8">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Title, Mode=OneWay}" />
+                        <TextBlock Text="{Binding Publisher, Mode=OneWay}" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <!--<Grid DataContext="{Binding Source={StaticResource theBook}}">-->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.IsSharedSizeScope="True"  ItemsSource="{Binding}" Grid.Column="0" IsSynchronizedWithCurrentItem="True" />
+        <GridSplitter Grid.Column="0"  HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="3" />
+        <StackPanel x:Name="stack1" Orientation="Vertical" Grid.Column="1">
+            <Button Content="{Binding /}" />
+            <TextBlock Text="{Binding /Isbn, Mode=OneTime}" />
+            <TextBox Text="{Binding /Title, Mode=TwoWay}" />
+            <TextBox Text="{Binding /Publisher, Mode=TwoWay}" />
             <TextBlock Text="{Binding /Authors, Mode=OneTime, Converter={StaticResource StringArrayToStringConverter}, ConverterParameter=', '}" />
             <!--<ListBox ItemsSource="{Binding /Authors, Mode=OneTime}" />-->
-			<Button Content="Show Book" Click="OnShowBook" />
-			<Button Content="Change Book" Click="OnChangeBook" />
-			<Button Content="Add A Book" Click="OnAddBook" />
-		</StackPanel>
-        
+            <Button Content="Show Book" Click="OnShowBook" />
+            <Button Content="Change Book" Click="OnChangeBook" />
+            <Button Content="Add A Book" Click="OnAddBook" />
+        </StackPanel>
+
     </Grid>
 </Window>
