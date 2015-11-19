@@ -6,12 +6,13 @@
         xmlns:local="clr-namespace:BooksSample"
         xmlns:utils="clr-namespace:BooksSample.Utilities"
 		xmlns:models="clr-namespace:BooksSample.Models"
+        xmlns:sort="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Window.Resources>
         <!--<models:Book x:Key="theBook" Title="Professional C# 6" Publisher="Wrox PRess" />-->
 
-        <!--<ObjectDataProvider x:Key="theBook" ObjectType="{x:Type models:BooksRepository}" MethodName="GetTheBook" />-->
+        <ObjectDataProvider x:Key="books" ObjectType="{x:Type models:BooksRepository}" MethodName="GetBooks" />
         <utils:StringArrayToStringConverter x:Key="StringArrayToStringConverter" />
 
         <DataTemplate DataType="{x:Type models:Book}" x:Key="wroxBookTemplate">
@@ -43,11 +44,17 @@
                 </Border>
             </Grid>
         </DataTemplate>
-        
+
         <utils:BookTemplateSelector WroxBookTemplate="{StaticResource wroxBookTemplate}" DefaultBookTemplate="{StaticResource defaultBookTemplate}" x:Key="BookTemplateSelector" />
+
+        <CollectionViewSource x:Key="cvs" Source="{StaticResource books}">
+            <CollectionViewSource.SortDescriptions>
+                <sort:SortDescription Direction="Ascending" PropertyName="Publisher" />
+                <sort:SortDescription Direction="Descending" PropertyName="Title" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
     </Window.Resources>
-    <!--<Grid DataContext="{Binding Source={StaticResource theBook}}">-->
-    <Grid>
+    <Grid DataContext="{Binding Source={StaticResource cvs}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
