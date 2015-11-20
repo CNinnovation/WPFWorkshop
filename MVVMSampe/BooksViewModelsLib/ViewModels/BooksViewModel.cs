@@ -1,7 +1,9 @@
-﻿using BooksViewModelsLib.ViewModels;
+﻿using BooksViewModelsLib.Events;
+using BooksViewModelsLib.ViewModels;
 using Microsoft.Practices.Prism.Commands;
 using MVVMSampe.Models;
 using MVVMSampe.Services;
+using MyEventAggregator;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,7 +23,15 @@ namespace MVVMSampe.ViewModels
             _messagingService = messagingService;
             NewBookCommand = new DelegateCommand(OnNewBook);
 
+            EventAggregator<InitBookEvent>.Instance.Event += OnInitBook;
 
+
+        }
+
+        private void OnInitBook(object arg1, InitBookEvent arg2)
+        {
+            Book initBook = _booksService.GetBookByIsbn(arg2.Isbn);
+            SelectedBook = initBook;
         }
 
         public IEnumerable<Book> Books => _booksService.GetBooks();
@@ -40,7 +50,10 @@ namespace MVVMSampe.ViewModels
         public Book SelectedBook
         {
             get { return _selectedBook; }
-            set { SetProperty(ref _selectedBook, value); }
+            set {
+                SetProperty(ref _selectedBook, value);
+                EventAggregator<SelectedBookEvent>.Instance.Publish(this, new SelectedBookEvent() { Isbn = _selectedBook.Isbn });
+            }
         }
 
 

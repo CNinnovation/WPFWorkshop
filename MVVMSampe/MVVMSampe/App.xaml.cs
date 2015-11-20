@@ -1,5 +1,6 @@
 ﻿using BooksViewModelsLib.ViewModels;
 using Microsoft.Framework.DependencyInjection;
+using Microsoft.Practices.Prism.PubSubEvents;
 using MVVMSampe.Services;
 using MVVMSampe.ViewModels;
 using System;
@@ -22,6 +23,7 @@ namespace MVVMSampe
             base.OnStartup(e);
 
             RegisterServices();
+            EventAggregator = new EventAggregator();
         }
 
         private void RegisterServices()
@@ -35,6 +37,8 @@ namespace MVVMSampe
 
             Container = services.BuildServiceProvider();
         }
+
+        public EventAggregator EventAggregator { get; private set; }
 
         public IServiceProvider Container { get; private set; }
     }

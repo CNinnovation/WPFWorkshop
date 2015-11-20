@@ -1,6 +1,8 @@
-﻿using BooksViewModelsLib.ViewModels;
+﻿using BooksViewModelsLib.Events;
+using BooksViewModelsLib.ViewModels;
 using MVVMSampe.Models;
 using MVVMSampe.Services;
+using MyEventAggregator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +18,16 @@ namespace MVVMSampe.ViewModels
         {
             _booksService = booksService;
 
-            Book = _booksService.GetBooks().First();
+            EventAggregator<SelectedBookEvent>.Instance.Event += SelectedBookChanged;
+
+            Book = _booksService.GetBooks().Skip(1).First();
+            EventAggregator<InitBookEvent>.Instance.Publish(this, new InitBookEvent() { Isbn = Book.Isbn });
+
+        }
+
+        private void SelectedBookChanged(object arg1, SelectedBookEvent arg2)
+        {
+           Book = _booksService.GetBookByIsbn(arg2.Isbn);
         }
 
         private Book _book;

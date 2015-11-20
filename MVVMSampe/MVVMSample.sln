@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksServiceContractsLib", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksModelsLib", "BooksModelsLib\BooksModelsLib.csproj", "{3EA2122D-9315-444E-B52E-39B30B999473}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyEventAggregator", "MyEventAggregator\MyEventAggregator.csproj", "{CE120784-115C-4BC0-AF6B-BD55A00C5A76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{3EA2122D-9315-444E-B52E-39B30B999473}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EA2122D-9315-444E-B52E-39B30B999473}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EA2122D-9315-444E-B52E-39B30B999473}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE120784-115C-4BC0-AF6B-BD55A00C5A76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE120784-115C-4BC0-AF6B-BD55A00C5A76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE120784-115C-4BC0-AF6B-BD55A00C5A76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE120784-115C-4BC0-AF6B-BD55A00C5A76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
