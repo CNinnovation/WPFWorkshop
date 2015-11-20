@@ -8,9 +8,9 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <StackPanel Orientation="Vertical">
-            <TextBox Text="{Binding Isbn, Mode=TwoWay}" />
-            <TextBox Text="{Binding Title, Mode=TwoWay}" />
-            <TextBox Text="{Binding Publisher, Mode=TwoWay}" />
+            <TextBox Text="{Binding Book.Isbn, Mode=TwoWay}" />
+            <TextBox Text="{Binding Book.Title, Mode=TwoWay}" />
+            <TextBox Text="{Binding Book.Publisher, Mode=TwoWay}" />
         </StackPanel>
     </Grid>
 </UserControl>

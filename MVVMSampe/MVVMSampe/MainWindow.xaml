@@ -12,7 +12,12 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <Views:BooksUC />
         <Views:BookUC Grid.Column="1" />
+        <Views:RandomUC Grid.Row="1" />
     </Grid>
 </Window>

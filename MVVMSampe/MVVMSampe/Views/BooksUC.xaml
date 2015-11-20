@@ -14,7 +14,7 @@
         <StackPanel Orientation="Horizontal">
             <Button Content="New Book" Command="{Binding NewBookCommand, Mode=OneTime}" />
         </StackPanel>
-        <ListBox ItemsSource="{Binding Books}" Grid.Row="1">
+        <ListBox ItemsSource="{Binding Books, Mode=OneWay}" Grid.Row="1" SelectedItem="{Binding SelectedBook, Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">

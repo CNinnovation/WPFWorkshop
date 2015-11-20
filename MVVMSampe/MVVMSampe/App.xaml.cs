@@ -1,4 +1,5 @@
-﻿using Microsoft.Framework.DependencyInjection;
+﻿using BooksViewModelsLib.ViewModels;
+using Microsoft.Framework.DependencyInjection;
 using MVVMSampe.Services;
 using MVVMSampe.ViewModels;
 using System;
@@ -30,6 +31,7 @@ namespace MVVMSampe
             services.AddSingleton<IMessagingService, WPFMessagingService>();
             services.AddTransient<BooksViewModel>();
             services.AddTransient<BookViewModel>();
+            services.AddTransient<RandomViewModel>();
 
             Container = services.BuildServiceProvider();
         }

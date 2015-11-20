@@ -35,6 +35,15 @@ namespace MVVMSampe.ViewModels
             _messagingService.ShowMessage("created a new book");
         }
 
+        private Book _selectedBook;
+
+        public Book SelectedBook
+        {
+            get { return _selectedBook; }
+            set { SetProperty(ref _selectedBook, value); }
+        }
+
+
 
     }
 }
